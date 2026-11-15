@@ -14,11 +14,12 @@
  * never to Custom CSS or other code fields. Text logic lives in lib.js.
  */
 
+import { installThemePalette } from './theme-palette.js';
 import { BLOCKQUOTE, DEFAULT_PAIRS, DEFAULT_TOOLBAR, buildTable, correctQuote, openerInsert, pendingClose, toggleBlockquote, toggleWrap } from './lib.js';
 
 const MODULE = 'auto_quote';
 const LOG = '[TypingBuddy]';
-const VERSION = '1.3.0'; // keep in sync with manifest.json
+const VERSION = '1.3.1'; // keep in sync with manifest.json
 const BASE_URL = new URL('.', import.meta.url);
 
 const DEFAULTS = Object.freeze({
@@ -757,7 +758,7 @@ async function reloadWithFreshFiles() {
     try {
         // cache: 'reload' fetches from the server and overwrites the browser's cached copy,
         // so the page reload below picks up the new files.
-        await Promise.all(['index.js', 'lib.js', 'style.css', 'manifest.json'].map(f =>
+        await Promise.all(['index.js', 'lib.js', 'theme-palette.js', 'style.css', 'manifest.json'].map(f =>
             fetch(new URL(f, BASE_URL), { cache: 'reload' }).catch(() => null)));
     } finally {
         location.reload();
@@ -768,6 +769,8 @@ async function reloadWithFreshFiles() {
 
 function init() {
     if (globalThis.TypingBuddy) return; // loaded twice
+    // สีที่อ่านออกเสมอในหน้าตั้งค่า (ดู theme-palette.js) — แถบปุ่มเหนือช่องพิมพ์อยู่บนพื้นแชท ใช้สีธีมตรง ๆ ได้อยู่แล้ว
+    try { installThemePalette({ prefix: 'aq' }); } catch (err) { console.warn('[Typing Buddy] theme palette', err); }
     settings();
     rebuildTable();
     renderSettings();

@@ -319,3 +319,15 @@
 .aq_settings .aq_note.aq_indent {
     margin-left: 1.6em;
 }
+
+/* แม่แบบสีที่อ่านออกเสมอ (theme-palette.js) — หน้าตั้งค่า: สีเน้น/ตัวอักษรตัดกับพื้น UI จริง
+   ทำงานเมื่อคำนวณสีสำเร็จแล้วเท่านั้น (<html class="aq-pal">) ถ้าไม่สำเร็จจะใช้สีธีมตรง ๆ แบบเดิม
+   แถบปุ่มเหนือช่องพิมพ์ (#aq_bar) ไม่อยู่ในนี้ — มันลอยอยู่บนพื้นแชท ซึ่งสีธีมตัดกันอยู่แล้ว */
+html.aq-pal .aq_settings {
+    --SmartThemeBlurTintColor: var(--aq-p-surface);
+    --SmartThemeBodyColor: var(--aq-p-fg);
+    --SmartThemeQuoteColor: var(--aq-p-accent-text);
+    --SmartThemeEmColor: var(--aq-p-em);
+    --SmartThemeUnderlineColor: var(--aq-p-underline);
+    --SmartThemeBorderColor: var(--aq-p-line);
+}
