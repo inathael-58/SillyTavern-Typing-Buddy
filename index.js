@@ -19,7 +19,7 @@ import { BLOCKQUOTE, DEFAULT_PAIRS, DEFAULT_TOOLBAR, buildTable, correctQuote, o
 
 const MODULE = 'auto_quote';
 const LOG = '[TypingBuddy]';
-const VERSION = '1.3.1'; // keep in sync with manifest.json
+const VERSION = '1.3.2'; // keep in sync with manifest.json
 const BASE_URL = new URL('.', import.meta.url);
 
 const DEFAULTS = Object.freeze({

@@ -331,3 +331,17 @@ html.aq-pal .aq_settings {
     --SmartThemeUnderlineColor: var(--aq-p-underline);
     --SmartThemeBorderColor: var(--aq-p-line);
 }
+
+/* ST's plain .menu_button is display:flex, which drops the space between an icon and its
+   label. Zero-specificity roots, so a gap this extension already sets still wins. */
+:where([class^="aq_"], [class*=" aq_"], [id^="aq_"]) .menu_button { gap: 0.4em; }
+
+/* ST draws inputs with a grey film (var(--black30a)) that turns muddy on light themes.
+   In these panels, once the palette is ready, inputs take its card surface and readable
+   text instead, so no custom CSS is needed. */
+html.aq-pal :where(.aq_settings) :is(.text_pole, textarea, select, input:is([type="text"], [type="search"], [type="number"], [type="url"], [type="email"], [type="password"], :not([type]))) {
+    background-color: var(--aq-p-surface2);
+    color: var(--aq-p-fg);
+    border-color: var(--aq-p-line);
+}
+html.aq-pal :where(.aq_settings) :is(.text_pole, textarea, input)::placeholder { color: var(--aq-p-muted); opacity: 1; }
